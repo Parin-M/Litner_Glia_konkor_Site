@@ -1,0 +1,820 @@
+<!DOCTYPE html> <html lang="fa" dir="rtl"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1.0"> <meta name="theme-color" content="#080c17"> <meta name="description" content="گلیا کنکور؛ لایتنر هوشمند برای یادگیری، مرور و آزمون"> <title>گلیا کنکور | باهوش یاد بگیر، با اعتماد پیش برو</title> <style> @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap'); :root{ --bg:#070b14; --bg2:#0b1120; --panel:#111827; --panel2:#151e31; --panel3:#1b263c; --text:#f7f8fc; --muted:#929bad; --soft:#c6ccda; --gold:#f5c766; --coral:#ff716c; --cyan:#70d8d4; --purple:#a97af6; --green:#38d7a2; --blue:#73a8ff; --red:#ff7770; --border:rgba(255,255,255,.08); --shadow:0 30px 100px rgba(0,0,0,.42); --radius:30px; } *{ box-sizing:border-box; margin:0; padding:0; } html{ scroll-behavior:smooth; background:var(--bg); } body{ font-family:'Vazirmatn',Tahoma,sans-serif; background: radial-gradient(circle at 75% 5%,rgba(112,216,212,.08),transparent 25%), radial-gradient(circle at 20% 20%,rgba(169,122,246,.07),transparent 25%), var(--bg); color:var(--text); overflow-x:hidden; } body.no-scroll{ overflow:hidden; } a{ color:inherit; text-decoration:none; } button{ font:inherit; } ::selection{ background:var(--coral); color:white; } .noise{ position:fixed; inset:0; z-index:9999; pointer-events:none; opacity:.025; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); } .progress{ position:fixed; top:0; right:0; width:100%; height:3px; z-index:10000; background:rgba(255,255,255,.04); } .progress span{ display:block; width:0; height:100%; background:linear-gradient(90deg,var(--purple),var(--cyan),var(--coral)); } .nav{ position:fixed; top:18px; left:50%; transform:translateX(-50%); width:min(1180px,calc(100% - 32px)); height:66px; display:flex; align-items:center; justify-content:space-between; padding:0 20px; z-index:1000; border:1px solid rgba(255,255,255,.09); background:rgba(10,15,27,.68); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); border-radius:22px; box-shadow:0 20px 60px rgba(0,0,0,.2); transition:.45s ease; } .nav.scrolled{ top:10px; background:rgba(10,15,27,.88); transform:translateX(-50%) scale(.98); } .logo{ display:flex; align-items:center; gap:12px; font-size:19px; font-weight:900; } .logo-mark{ width:40px; height:40px; border-radius:13px; display:grid; place-items:center; color:#fff; font-size:20px; background: radial-gradient(circle at 30% 20%,#ffd87a,transparent 30%), linear-gradient(145deg,#ff7b73,#9b64ef); box-shadow:0 8px 30px rgba(255,113,108,.2); } .nav-links{ display:flex; gap:6px; align-items:center; } .nav-links a{ padding:10px 14px; color:#aeb6c7; font-size:13px; border-radius:12px; transition:.3s ease; } .nav-links a:hover{ color:white; background:rgba(255,255,255,.06); } .nav-download{ padding:12px 18px; border-radius:14px; background:#fff; color:#101522; font-size:13px; font-weight:800; transition:.35s ease; } .nav-download:hover{ transform:translateY(-2px); box-shadow:0 12px 30px rgba(255,255,255,.15); } .hero{ min-height:100vh; position:relative; display:flex; align-items:center; justify-content:center; padding:150px 24px 90px; overflow:hidden; } .hero-orb{ position:absolute; border-radius:50%; filter:blur(1px); pointer-events:none; } .orb-one{ width:420px; height:420px; right:-160px; top:130px; background:radial-gradient(circle,rgba(112,216,212,.18),transparent 68%); animation:float 8s ease-in-out infinite; } .orb-two{ width:520px; height:520px; left:-230px; bottom:-150px; background:radial-gradient(circle,rgba(169,122,246,.17),transparent 68%); animation:float 10s ease-in-out infinite reverse; } .orb-three{ width:260px; height:260px; left:42%; top:12%; background:radial-gradient(circle,rgba(255,113,108,.08),transparent 70%); } .hero-content{ width:min(1150px,100%); display:grid; grid-template-columns:1fr .82fr; gap:70px; align-items:center; position:relative; z-index:2; } .hero-copy{ max-width:680px; } .eyebrow{ display:inline-flex; align-items:center; gap:9px; padding:8px 13px; margin-bottom:24px; border:1px solid rgba(112,216,212,.16); background:rgba(112,216,212,.06); color:var(--cyan); border-radius:100px; font-size:12px; } .eyebrow i{ width:7px; height:7px; background:var(--cyan); border-radius:50%; box-shadow:0 0 18px var(--cyan); } .hero h1{ font-size:clamp(48px,7vw,92px); line-height:1.05; letter-spacing:-3px; font-weight:900; margin-bottom:28px; } .hero h1 .gradient{ background:linear-gradient(100deg,#fff 10%,#f5c766 45%,#ff716c 70%,#a97af6); -webkit-background-clip:text; color:transparent; } .hero-description{ max-width:590px; color:#aeb6c7; font-size:18px; line-height:2; margin-bottom:34px; } .hero-actions{ display:flex; flex-wrap:wrap; gap:13px; } .primary-btn, .secondary-btn{ border:0; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:54px; padding:0 23px; border-radius:17px; font-size:14px; font-weight:800; transition:.35s ease; } .primary-btn{ background:var(--coral); color:white; box-shadow:0 15px 45px rgba(255,113,108,.2); } .primary-btn:hover{ transform:translateY(-4px); box-shadow:0 20px 55px rgba(255,113,108,.3); } .secondary-btn{ background:rgba(255,255,255,.06); color:white; border:1px solid var(--border); } .secondary-btn:hover{ transform:translateY(-4px); background:rgba(255,255,255,.1); } .phone-stage{ height:650px; position:relative; display:grid; place-items:center; perspective:1300px; } .phone{ width:285px; height:590px; border-radius:43px; border:7px solid #252b38; background:#090e19; position:relative; overflow:hidden; box-shadow: 0 60px 100px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.07), inset 0 0 40px rgba(255,255,255,.03); transform:rotateY(-13deg) rotateX(4deg) rotateZ(2deg); animation:phoneFloat 7s ease-in-out infinite; } .phone::before{ content:""; position:absolute; width:100px; height:25px; background:#05070c; border-radius:0 0 17px 17px; top:0; left:50%; transform:translateX(-50%); z-index:5; } .phone-screen{ position:absolute; inset:0; padding:35px 14px 12px; background: radial-gradient(circle at 80% 5%,rgba(112,216,212,.1),transparent 30%), #090e19; } .phone-header{ text-align:right; padding:10px; } .phone-header strong{ color:var(--cyan); font-size:18px; } .phone-header small{ display:block; color:#7e8798; margin-top:5px; } .phone-card{ margin-top:12px; padding:18px; border-radius:26px; background:linear-gradient(145deg,#172238,#101a2b); border:1px solid rgba(255,255,255,.04); } .phone-card h3{ color:var(--gold); font-size:19px; margin-bottom:8px; } .phone-card p{ color:#7f899b; font-size:10px; } .phone-progress{ margin-top:25px; height:7px; border-radius:20px; background:#263247; overflow:hidden; } .phone-progress span{ display:block; width:38%; height:100%; background:var(--coral); } .phone-score{ display:flex; justify-content:space-between; margin-top:10px; font-size:11px; color:#9ca6b8; } .phone-button{ margin-top:22px; width:100%; border-radius:20px; padding:12px; text-align:center; background:var(--coral); font-size:11px; color:white; } .phone-grid{ margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:10px; } .phone-tile{ height:105px; padding:12px; border-radius:19px; background:#151e30; display:flex; flex-direction:column; justify-content:space-between; } .phone-icon{ font-size:23px; } .phone-tile strong{ font-size:11px; } .phone-tile small{ color:#7f899a; font-size:9px; } .floating-card{ position:absolute; padding:15px 18px; border-radius:18px; border:1px solid rgba(255,255,255,.08); background:rgba(18,25,40,.8); backdrop-filter:blur(20px); box-shadow:0 25px 50px rgba(0,0,0,.3); z-index:5; } .float-one{ right:0; top:130px; animation:float 6s ease-in-out infinite; } .float-two{ left:0; bottom:125px; animation:float 7s ease-in-out infinite reverse; } .floating-card small{ display:block; color:#8993a5; font-size:10px; margin-bottom:4px; } .floating-card strong{ font-size:14px; } .scroll-hint{ position:absolute; bottom:25px; left:50%; transform:translateX(-50%); color:#626c7e; font-size:11px; display:flex; flex-direction:column; align-items:center; gap:8px; } .scroll-line{ width:1px; height:45px; background:linear-gradient(var(--coral),transparent); animation:scrollLine 2s ease-in-out infinite; } .section{ width:min(1180px,calc(100% - 40px)); margin:0 auto; padding:150px 0; position:relative; } .section-label{ color:var(--coral); font-size:12px; font-weight:800; margin-bottom:16px; } .section-title{ max-width:780px; font-size:clamp(34px,5vw,67px); line-height:1.2; letter-spacing:-2px; margin-bottom:25px; } .section-title span{ color:#6e7789; } .section-text{ max-width:700px; color:#8e98aa; font-size:16px; line-height:2.2; } .feature-showcase{ min-height:900px; position:relative; } .sticky-stage{ height:680px; position:sticky; top:100px; display:grid; grid-template-columns:.8fr 1.2fr; gap:70px; align-items:center; } .story-list{ display:flex; flex-direction:column; gap:15px; } .story-item{ padding:22px; border-radius:22px; border:1px solid transparent; color:#697387; transition:.5s ease; cursor:pointer; } .story-item.active{ color:white; background:rgba(255,255,255,.045); border-color:rgba(255,255,255,.07); } .story-item h3{ font-size:20px; margin-bottom:8px; } .story-item p{ color:inherit; font-size:13px; line-height:1.9; } .story-visual{ height:580px; border-radius:40px; background: radial-gradient(circle at 70% 20%,rgba(112,216,212,.1),transparent 35%), linear-gradient(145deg,#111a2c,#0c1321); border:1px solid rgba(255,255,255,.07); box-shadow:var(--shadow); position:relative; overflow:hidden; display:grid; place-items:center; } .story-visual::before{ content:""; position:absolute; width:600px; height:600px; border:1px solid rgba(255,255,255,.04); border-radius:50%; } .ai-orbit{ width:300px; height:300px; border:1px solid rgba(112,216,212,.18); border-radius:50%; position:relative; animation:spin 22s linear infinite; } .ai-orbit::before, .ai-orbit::after{ content:""; position:absolute; width:15px; height:15px; border-radius:50%; } .ai-orbit::before{ top:-7px; left:50%; background:var(--cyan); box-shadow:0 0 30px var(--cyan); } .ai-orbit::after{ bottom:20px; right:-5px; background:var(--purple); box-shadow:0 0 30px var(--purple); } .ai-core{ position:absolute; inset:50%; transform:translate(-50%,-50%); width:125px; height:125px; border-radius:35px; display:grid; place-items:center; background:linear-gradient(145deg,#202d45,#111b2c); border:1px solid rgba(255,255,255,.1); box-shadow:0 30px 70px rgba(0,0,0,.4); text-align:center; } .ai-core strong{ font-size:22px; } .ai-core small{ display:block; color:var(--cyan); margin-top:5px; } .ai-dot{ position:absolute; padding:11px 15px; background:rgba(20,30,47,.9); border:1px solid rgba(255,255,255,.07); border-radius:15px; font-size:11px; color:#bbc3d0; box-shadow:0 15px 40px rgba(0,0,0,.25); } .dot-a{top:18%;right:8%} .dot-b{bottom:18%;left:8%} .dot-c{top:45%;left:4%} .metrics{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:70px; } .metric{ padding:28px; min-height:145px; border-radius:25px; background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.06); } .metric strong{ font-size:36px; display:block; margin-bottom:8px; } .metric span{ color:#818b9d; font-size:12px; } .cards-section{ padding-top:80px; } .card-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:55px; } .feature-card{ min-height:340px; padding:30px; border-radius:32px; background:#111928; border:1px solid rgba(255,255,255,.06); position:relative; overflow:hidden; transition:.5s ease; } .feature-card:hover{ transform:translateY(-10px); border-color:rgba(255,255,255,.13); box-shadow:0 30px 80px rgba(0,0,0,.3); } .feature-card::after{ content:""; position:absolute; width:190px; height:190px; border-radius:50%; top:-100px; left:-100px; background:var(--glow,rgba(255,255,255,.05)); filter:blur(5px); } .feature-icon{ width:58px; height:58px; display:grid; place-items:center; border-radius:18px; background:rgba(255,255,255,.06); font-size:25px; margin-bottom:75px; } .feature-card h3{ font-size:21px; margin-bottom:12px; } .feature-card p{ color:#808a9d; line-height:2; font-size:13px; } .color-gold{--glow:rgba(245,199,102,.16)} .color-cyan{--glow:rgba(112,216,212,.15)} .color-purple{--glow:rgba(169,122,246,.15)} .color-green{--glow:rgba(56,215,162,.15)} .color-blue{--glow:rgba(115,168,255,.15)} .color-coral{--glow:rgba(255,113,108,.15)} .lesson-section{ min-height:1000px; } .lesson-demo{ margin-top:70px; height:700px; border-radius:42px; background:#0f1727; border:1px solid rgba(255,255,255,.07); overflow:hidden; position:relative; box-shadow:var(--shadow); } .demo-top{ height:70px; border-bottom:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:space-between; padding:0 30px; } .demo-dots{ display:flex; gap:7px; } .demo-dots i{ width:9px; height:9px; border-radius:50%; background:#394354; } .demo-title{ font-size:12px; color:#9ca6b7; } .lesson-list{ width:72%; margin:45px auto; display:flex; flex-direction:column; gap:12px; } .lesson-row{ min-height:88px; padding:18px 22px; border-radius:22px; background:#161f31; display:flex; align-items:center; justify-content:space-between; border:1px solid transparent; transition:.4s ease; } .lesson-row:hover{ transform:translateX(-7px); border-color:rgba(112,216,212,.18); background:#19263a; } .lesson-info{ display:flex; align-items:center; gap:15px; } .lesson-number{ width:43px; height:43px; border-radius:14px; display:grid; place-items:center; background:#253047; color:var(--cyan); font-weight:800; } .lesson-info strong{ display:block; margin-bottom:4px; } .lesson-info small{ color:#727d90; } .lesson-count{ color:#6d788b; font-size:12px; } .exam-section{ min-height:950px; } .exam-window{ width:min(700px,100%); margin:70px auto 0; padding:12px; border-radius:36px; background:#151e30; border:1px solid rgba(255,255,255,.07); box-shadow:var(--shadow); } .exam-inner{ padding:35px; border-radius:27px; background:#0d1422; } .exam-head{ display:flex; justify-content:space-between; color:#818b9d; font-size:12px; margin-bottom:40px; } .question{ font-size:25px; line-height:1.9; margin-bottom:30px; } .answer{ display:block; width:100%; text-align:right; padding:18px; margin:10px 0; background:#172135; color:#aeb7c7; border:1px solid rgba(255,255,255,.05); border-radius:17px; cursor:pointer; transition:.3s ease; } .answer:hover, .answer.selected{ border-color:var(--cyan); color:white; transform:translateX(-5px); } .answer.correct{ border-color:var(--green); background:rgba(56,215,162,.09); } .answer.wrong{ border-color:var(--coral); background:rgba(255,113,108,.09); } .exam-feedback{ margin-top:18px; padding:14px; border-radius:15px; color:#8b96a8; background:rgba(255,255,255,.035); font-size:12px; display:none; } .exam-feedback.show{ display:block; } .ai-section{ min-height:1250px; padding-top:180px; } .ai-intro{ display:grid; grid-template-columns:1fr .75fr; gap:70px; align-items:end; } .ai-title{ font-size:clamp(42px,6vw,78px); line-height:1.1; letter-spacing:-3px; } .ai-title em{ color:var(--cyan); font-style:normal; } .ai-note{ color:#7f899c; line-height:2.2; font-size:14px; } .ai-scroll-story{ margin-top:100px; position:relative; } .ai-story{ min-height:520px; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:80px; margin-bottom:80px; } .ai-story:nth-child(even){ direction:ltr; } .ai-story:nth-child(even) .ai-story-text{ direction:rtl; } .ai-story-visual{ min-height:460px; border-radius:38px; background:linear-gradient(145deg,#121c2f,#0d1421); border:1px solid rgba(255,255,255,.07); display:grid; place-items:center; position:relative; overflow:hidden; } .search-ui{ width:76%; padding:25px; border-radius:25px; background:#151f32; box-shadow:0 30px 80px rgba(0,0,0,.35); } .search-box{ height:54px; padding:0 16px; display:flex; align-items:center; gap:10px; border-radius:15px; background:#0b111d; border:1px solid rgba(255,255,255,.07); color:#707b8d; font-size:12px; } .search-result{ margin-top:10px; padding:14px; border-radius:15px; background:#19243a; } .search-result strong{ display:block; font-size:12px; margin-bottom:6px; } .search-result span{ color:#778397; font-size:10px; line-height:1.8; } .score{ float:left; color:var(--cyan); font-size:10px; } .ai-story-text h3{ font-size:34px; margin-bottom:20px; } .ai-story-text p{ color:#8a94a7; line-height:2.3; font-size:15px; max-width:530px; } .ai-story-text ul{ list-style:none; margin-top:25px; } .ai-story-text li{ color:#aab3c1; font-size:13px; margin:12px 0; } .ai-story-text li::before{ content:""; display:inline-block; width:7px; height:7px; margin-left:10px; border-radius:50%; background:var(--cyan); } .ai-specs{ margin-top:80px; padding:35px; border-radius:30px; background:#101827; border:1px solid rgba(255,255,255,.07); } .ai-specs h3{ font-size:21px; margin-bottom:25px; } .spec-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; } .spec{ padding:20px; border-radius:20px; background:#151f30; } .spec strong{ display:block; font-size:22px; margin-bottom:6px; } .spec span{ color:#778195; font-size:11px; } .ai-disclaimer{ margin-top:18px; color:#626d80; font-size:11px; line-height:2; } .settings-section{ padding-top:130px; } .settings-demo{ margin-top:60px; padding:25px; border-radius:35px; background:#101827; border:1px solid rgba(255,255,255,.06); box-shadow:var(--shadow); } .setting{ min-height:75px; padding:17px 20px; margin-bottom:10px; border-radius:19px; background:#161f31; display:flex; justify-content:space-between; align-items:center; } .setting:last-child{ margin-bottom:0; } .setting-right{ display:flex; align-items:center; gap:13px; } .setting-icon{ width:42px; height:42px; display:grid; place-items:center; border-radius:13px; background:#202b40; } .setting strong{ display:block; font-size:13px; } .setting small{ display:block; color:#707b8e; margin-top:3px; font-size:10px; } .toggle{ width:52px; height:29px; padding:3px; border-radius:20px; background:#273246; cursor:pointer; } .toggle span{ display:block; width:23px; height:23px; border-radius:50%; background:#758196; transition:.3s ease; } .toggle.active{ background:var(--coral); } .toggle.active span{ transform:translateX(-23px); background:white; } .download-section{ padding:180px 0 150px; } .download-box{ min-height:500px; padding:80px 50px; border-radius:45px; background: radial-gradient(circle at 70% 20%,rgba(112,216,212,.12),transparent 30%), radial-gradient(circle at 20% 80%,rgba(169,122,246,.12),transparent 30%), #101827; border:1px solid rgba(255,255,255,.08); text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden; } .download-box::before{ content:""; position:absolute; width:500px; height:500px; border:1px solid rgba(255,255,255,.04); border-radius:50%; } .download-box h2{ position:relative; font-size:clamp(38px,5vw,65px); margin-bottom:20px; } .download-box p{ position:relative; max-width:620px; color:#7f899c; line-height:2; margin-bottom:35px; } .download-box .primary-btn{ position:relative; min-width:220px; } .footer{ width:min(1180px,calc(100% - 40px)); margin:auto; padding:35px 0 45px; border-top:1px solid rgba(255,255,255,.07); display:flex; align-items:center; justify-content:space-between; color:#5f6a7d; font-size:11px; } .footer strong{ color:#aeb6c4; } .reveal{ opacity:0; transform:translateY(45px); transition:opacity 1s ease,transform 1s cubic-bezier(.16,1,.3,1); } .reveal.visible{ opacity:1; transform:none; } .reveal-left{ opacity:0; transform:translateX(70px); transition:opacity 1s ease,transform 1s cubic-bezier(.16,1,.3,1); } .reveal-left.visible{ opacity:1; transform:none; } .reveal-scale{ opacity:0; transform:scale(.88); transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.16,1,.3,1); } .reveal-scale.visible{ opacity:1; transform:scale(1); } @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} } @keyframes phoneFloat{ 0%,100%{transform:rotateY(-13deg) rotateX(4deg) rotateZ(2deg) translateY(0)} 50%{transform:rotateY(-9deg) rotateX(2deg) rotateZ(1deg) translateY(-16px)} } @keyframes scrollLine{ 0%{transform:scaleY(.2);transform-origin:top;opacity:0} 40%{opacity:1} 100%{transform:scaleY(1);transform-origin:top;opacity:0} } @keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} } @media(max-width:900px){ .nav-links{ display:none; } .hero{ padding-top:130px; } .hero-content{ grid-template-columns:1fr; text-align:center; } .hero-copy{ margin:auto; } .hero-description{ margin-left:auto; margin-right:auto; } .hero-actions{ justify-content:center; } .phone-stage{ height:590px; } .sticky-stage{ grid-template-columns:1fr; height:auto; position:relative; top:auto; } .story-visual{ order:-1; height:500px; } .metrics{ grid-template-columns:1fr 1fr; } .card-grid{ grid-template-columns:1fr 1fr; } .ai-intro{ grid-template-columns:1fr; } .ai-story{ grid-template-columns:1fr; gap:30px; } .ai-story:nth-child(even){ direction:rtl; } .spec-grid{ grid-template-columns:1fr 1fr; } } @media(max-width:600px){ .nav{ width:calc(100% - 20px); } .nav-download{ padding:10px 12px; font-size:11px; } .hero h1{ font-size:46px; letter-spacing:-2px; } .hero-description{ font-size:14px; } .phone{ width:245px; height:510px; } .phone-stage{ height:530px; } .floating-card{ display:none; } .section{ width:calc(100% - 28px); padding:95px 0; } .section-title{ font-size:38px; } .card-grid{ grid-template-columns:1fr; } .metrics{ grid-template-columns:1fr 1fr; } .metric{ padding:20px; } .metric strong{ font-size:28px; } .lesson-demo{ height:610px; } .lesson-list{ width:90%; margin-top:30px; } .lesson-row{ min-height:75px; padding:14px; } .lesson-info strong{ font-size:12px; } .lesson-info small{ font-size:9px; } .exam-inner{ padding:22px; } .question{ font-size:20px; } .ai-title{ font-size:42px; } .ai-story-visual{ min-height:360px; } .search-ui{ width:88%; } .spec-grid{ grid-template-columns:1fr 1fr; } .download-box{ padding:55px 20px; } .footer{ flex-direction:column; gap:15px; text-align:center; } } </style> </head> <body> <div class="noise"></div> <div class="progress"> <span id="progressBar"></span> </div> <nav class="nav" id="nav"> <a href="#home" class="logo"> <span class="logo-mark">گ</span> <span>گلیا کنکور</span> </a>
+<div class="nav-links">
+    <a href="#features">ویژگی‌ها</a>
+    <a href="#lessons">لایتنر</a>
+    <a href="#exam">آزمون</a>
+    <a href="#ai">هوش مصنوعی</a>
+    <a href="#settings">تنظیمات</a>
+</div>
+
+<a class="nav-download" href="https://github.com/Parin-M/Litner_Glia_konkor" target="_blank">
+    دریافت برنامه
+</a>
+</nav> <main> <section class="hero" id="home">
+<div class="hero-orb orb-one"></div>
+<div class="hero-orb orb-two"></div>
+<div class="hero-orb orb-three"></div>
+
+<div class="hero-content">
+
+    <div class="hero-copy reveal-left">
+
+        <div class="eyebrow">
+            <i></i>
+            یک لایتنر متفاوت برای یادگیری بهتر
+        </div>
+
+        <h1>
+            هر روز یک قدم
+            <span class="gradient">قوی‌تر.</span>
+        </h1>
+
+        <p class="hero-description">
+            گلیا کنکور یک برنامه‌ی لایتنر فارسی است که مرور، آزمون،
+            املا، آمار و ابزارهای هوشمند را در یک محیط ساده و سریع کنار هم می‌آورد.
+            همه‌چیز برای این ساخته شده که کمتر دنبال تنظیمات بگردی و بیشتر درس بخوانی.
+        </p>
+
+        <div class="hero-actions">
+            <a href="https://github.com/Parin-M/Litner_Glia_konkor"
+               target="_blank"
+               class="primary-btn">
+                دریافت برنامه
+                <span>←</span>
+            </a>
+
+            <a href="#features" class="secondary-btn">
+                دیدن امکانات
+                <span>↓</span>
+            </a>
+        </div>
+
+    </div>
+
+    <div class="phone-stage reveal-scale">
+
+        <div class="floating-card float-one">
+            <small>پیشرفت امروز</small>
+            <strong>مرور با موفقیت انجام شد</strong>
+        </div>
+
+        <div class="floating-card float-two">
+            <small>پاسخ درست</small>
+            <strong>یادگیری در حال پیشرفت است</strong>
+        </div>
+
+        <div class="phone">
+
+            <div class="phone-screen">
+
+                <div class="phone-header">
+                    <strong>گلیا کنکور</strong>
+                    <small>باهوش یاد بگیر، با اعتماد پیش برو</small>
+                </div>
+
+                <div class="phone-card">
+                    <h3>هر روز یک قدم قوی‌تر</h3>
+                    <p>سریع، سبک و کاملاً آفلاین</p>
+
+                    <div class="phone-score">
+                        <span>پیشرفت کلی</span>
+                        <span>۳۸٪</span>
+                    </div>
+
+                    <div class="phone-progress">
+                        <span></span>
+                    </div>
+
+                    <div class="phone-score">
+                        <span>هدف امروز</span>
+                        <span>۱۲ / ۲۵</span>
+                    </div>
+
+                    <div class="phone-button">
+                        شروع مرور
+                    </div>
+                </div>
+
+                <div class="phone-grid">
+
+                    <div class="phone-tile">
+                        <span class="phone-icon" style="color:#70d8d4">文</span>
+                        <strong>انگلیسی</strong>
+                        <small>۱۱۸۸ کارت</small>
+                    </div>
+
+                    <div class="phone-tile">
+                        <span class="phone-icon" style="color:#a97af6">⇄</span>
+                        <strong>افعال بی‌قاعده</strong>
+                        <small>۹۱ کارت</small>
+                    </div>
+
+                    <div class="phone-tile">
+                        <span class="phone-icon" style="color:#38d7a2">▣</span>
+                        <strong>فارسی</strong>
+                        <small>۴۳۷ کارت</small>
+                    </div>
+
+                    <div class="phone-tile">
+                        <span class="phone-icon" style="color:#f5c766">◈</span>
+                        <strong>پک فارسی</strong>
+                        <small>۴۳۴ کارت</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="scroll-hint">
+    <span>برای دیدن ادامه پایین برو</span>
+    <i class="scroll-line"></i>
+</div>
+</section> <section class="section reveal" id="features">
+<div class="section-label">گلیا کنکور</div>
+
+<h2 class="section-title">
+    برنامه‌ای که
+    <span>با روند درس خواندن تو جلو می‌رود.</span>
+</h2>
+
+<p class="section-text">
+    اینجا قرار نیست فقط چند کارت و چند صفحه داشته باشی.
+    از انتخاب درس و مرور گرفته تا آزمون، املا، آمار و امکانات هوشمند،
+    همه‌چیز در یک محیط تاریک و یکپارچه طراحی شده است.
+</p>
+
+<div class="metrics">
+
+    <div class="metric reveal">
+        <strong>آفلاین</strong>
+        <span>برای قابلیت‌های اصلی، اینترنت لازم نیست.</span>
+    </div>
+
+    <div class="metric reveal">
+        <strong>سریع</strong>
+        <span>طراحی سبک برای استفاده روزمره.</span>
+    </div>
+
+    <div class="metric reveal">
+        <strong>قابل تنظیم</strong>
+        <span>ظاهر و اندازه نوشته‌ها قابل شخصی‌سازی است.</span>
+    </div>
+
+    <div class="metric reveal">
+        <strong>هوشمند</strong>
+        <span>جست‌وجوی معنایی برای پیدا کردن مطالب مرتبط.</span>
+    </div>
+
+</div>
+</section> <section class="section feature-showcase">
+<div class="sticky-stage">
+
+    <div class="story-list">
+
+        <div class="story-item active" data-story="0">
+            <h3>مرور لایتنری</h3>
+            <p>
+                کارت‌ها را طبق برنامه مرور کن و روند یادگیری خودت را ببین.
+            </p>
+        </div>
+
+        <div class="story-item" data-story="1">
+            <h3>انتخاب درس</h3>
+            <p>
+                یک درس، چند درس یا همه درس‌ها را انتخاب کن و همان چیزی را حل کن که می‌خواهی.
+            </p>
+        </div>
+
+        <div class="story-item" data-story="2">
+            <h3>آزمون و املا</h3>
+            <p>
+                جواب را همان لحظه ثبت کن و سریع بفهم که درست جواب داده‌ای یا نه.
+            </p>
+        </div>
+
+        <div class="story-item" data-story="3">
+            <h3>آمار پیشرفت</h3>
+            <p>
+                عملکردت را ببین و متوجه شو کدام بخش‌ها بیشتر به مرور نیاز دارند.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="story-visual reveal-scale" id="storyVisual">
+
+        <div class="ai-orbit">
+            <div class="ai-core">
+                <div>
+                    <strong id="visualTitle">مرور</strong>
+                    <small id="visualSub">هوشمند و سریع</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="ai-dot dot-a" id="dotA">کارت‌های امروز</div>
+        <div class="ai-dot dot-b" id="dotB">پیشرفت</div>
+        <div class="ai-dot dot-c" id="dotC">یادگیری</div>
+
+    </div>
+
+</div>
+</section> <section class="section cards-section" id="lessons">
+<div class="section-label">ساختار برنامه</div>
+
+<h2 class="section-title">
+    درس‌ها را خودت انتخاب کن،
+    <span>برنامه هم همان را اجرا می‌کند.</span>
+</h2>
+
+<p class="section-text">
+    لازم نیست همیشه همه کارت‌ها را مرور کنی.
+    می‌توانی سراغ یک درس مشخص بروی، چند درس را انتخاب کنی
+    یا حالت همه درس‌ها را فعال کنی.
+</p>
+
+<div class="card-grid">
+
+    <article class="feature-card color-cyan reveal">
+        <div class="feature-icon">文</div>
+        <h3>انگلیسی</h3>
+        <p>
+            کارت‌های انگلیسی، معنی و موارد مرتبط را در یک دسته جداگانه مرور کن.
+        </p>
+    </article>
+
+    <article class="feature-card color-purple reveal">
+        <div class="feature-icon">⇄</div>
+        <h3>افعال بی‌قاعده</h3>
+        <p>
+            دسته‌ای اختصاصی برای مرور سریع مواردی که نیاز به تکرار بیشتری دارند.
+        </p>
+    </article>
+
+    <article class="feature-card color-green reveal">
+        <div class="feature-icon">▣</div>
+        <h3>فارسی</h3>
+        <p>
+            کارت‌های فارسی را جداگانه مرور کن یا در کنار بقیه درس‌ها قرار بده.
+        </p>
+    </article>
+
+    <article class="feature-card color-blue reveal">
+        <div class="feature-icon">◎</div>
+        <h3>عربی</h3>
+        <p>
+            برای کارت‌های عربی هم می‌توانی دسته و مسیر مرور مخصوص خودت داشته باشی.
+        </p>
+    </article>
+
+    <article class="feature-card color-gold reveal">
+        <div class="feature-icon">◈</div>
+        <h3>پک فارسی</h3>
+        <p>
+            مجموعه‌های آماده را مرتب نگه دار و بر اساس نیازت سراغشان برو.
+        </p>
+    </article>
+
+    <article class="feature-card color-coral reveal">
+        <div class="feature-icon">؟</div>
+        <h3>املا و آزمون</h3>
+        <p>
+            حالت آزمون را اجرا کن و نتیجه پاسخ را همان لحظه ببین.
+        </p>
+    </article>
+
+</div>
+</section> <section class="section lesson-section">
+<div class="section-label">انتخاب هوشمند درس</div>
+
+<h2 class="section-title">
+    اول انتخاب کن،
+    <span>بعد شروع کن.</span>
+</h2>
+
+<p class="section-text">
+    مسیر مرور نباید اجباری باشد.
+    برنامه اجازه می‌دهد قبل از شروع مشخص کنی دقیقاً کدام درس‌ها
+    و کدام بخش‌ها را می‌خواهی حل کنی.
+</p>
+
+<div class="lesson-demo reveal-scale">
+
+    <div class="demo-top">
+
+        <div class="demo-dots">
+            <i></i>
+            <i></i>
+            <i></i>
+        </div>
+
+        <span class="demo-title">انتخاب درس</span>
+
+    </div>
+
+    <div class="lesson-list">
+
+        <div class="lesson-row">
+            <div class="lesson-info">
+                <div class="lesson-number">۱</div>
+                <div>
+                    <strong>انگلیسی</strong>
+                    <small>۱۱۸۸ کارت</small>
+                </div>
+            </div>
+            <div class="lesson-count">انتخاب</div>
+        </div>
+
+        <div class="lesson-row">
+            <div class="lesson-info">
+                <div class="lesson-number">۲</div>
+                <div>
+                    <strong>افعال بی‌قاعده</strong>
+                    <small>۹۱ کارت</small>
+                </div>
+            </div>
+            <div class="lesson-count">انتخاب</div>
+        </div>
+
+        <div class="lesson-row">
+            <div class="lesson-info">
+                <div class="lesson-number">۳</div>
+                <div>
+                    <strong>فارسی</strong>
+                    <small>۴۳۷ کارت</small>
+                </div>
+            </div>
+            <div class="lesson-count">انتخاب</div>
+        </div>
+
+        <div class="lesson-row">
+            <div class="lesson-info">
+                <div class="lesson-number">۴</div>
+                <div>
+                    <strong>عربی</strong>
+                    <small>۴۳۵ کارت</small>
+                </div>
+            </div>
+            <div class="lesson-count">انتخاب</div>
+        </div>
+
+        <div class="lesson-row">
+            <div class="lesson-info">
+                <div class="lesson-number">۵</div>
+                <div>
+                    <strong>همه درس‌ها</strong>
+                    <small>مرور کامل</small>
+                </div>
+            </div>
+            <div class="lesson-count">انتخاب</div>
+        </div>
+
+    </div>
+
+</div>
+</section> <section class="section exam-section" id="exam">
+<div class="section-label">آزمون و املا</div>
+
+<h2 class="section-title">
+    جواب بده،
+    <span>همان لحظه نتیجه را ببین.</span>
+</h2>
+
+<p class="section-text">
+    در حالت آزمون و املا، پاسخ کاربر بلافاصله بررسی می‌شود.
+    این یعنی لازم نیست تا آخر آزمون صبر کنی تا بفهمی اشتباه کرده‌ای یا نه.
+</p>
+
+<div class="exam-window reveal-scale">
+
+    <div class="exam-inner">
+
+        <div class="exam-head">
+            <span>آزمون نمونه</span>
+            <span>سؤال ۳ از ۱۰</span>
+        </div>
+
+        <div class="question">
+            کدام گزینه معنی درست واژه را نشان می‌دهد؟
+        </div>
+
+        <button class="answer" data-correct="false">
+            گزینه اول
+        </button>
+
+        <button class="answer" data-correct="true">
+            گزینه دوم
+        </button>
+
+        <button class="answer" data-correct="false">
+            گزینه سوم
+        </button>
+
+        <button class="answer" data-correct="false">
+            گزینه چهارم
+        </button>
+
+        <div class="exam-feedback" id="examFeedback">
+            پاسخ را انتخاب کن تا نتیجه همان لحظه نمایش داده شود.
+        </div>
+
+    </div>
+
+</div>
+</section> <section class="section ai-section" id="ai">
+<div class="ai-intro">
+
+    <div>
+        <div class="section-label">هوش مصنوعی آفلاین</div>
+
+        <h2 class="ai-title">
+            هوش مصنوعی،
+            <em>اما نه یک چت‌بات.</em>
+        </h2>
+    </div>
+
+    <p class="ai-note">
+        بخش هوشمند برنامه برای حرف زدن با کاربر ساخته نشده.
+        موتور اصلی آن برای فهمیدن شباهت معنایی متن‌ها و پیدا کردن
+        مطالب مرتبط طراحی شده تا بتواند در خود برنامه به کارهای آموزشی کمک کند.
+    </p>
+
+</div>
+
+
+<div class="ai-scroll-story">
+
+    <article class="ai-story reveal">
+
+        <div class="ai-story-visual">
+
+            <div class="search-ui">
+
+                <div class="search-box">
+                    <span>⌕</span>
+                    <span>پیدا کردن مطلب مرتبط با حافظه</span>
+                </div>
+
+                <div class="search-result">
+                    <strong>
+                        نتیجه نزدیک
+                        <span class="score">۰٫۸۱</span>
+                    </strong>
+                    <span>
+                        این مطلب از نظر معنی به پرسش تو نزدیک است.
+                    </span>
+                </div>
+
+                <div class="search-result">
+                    <strong>
+                        نتیجه دوم
+                        <span class="score">۰٫۶۴</span>
+                    </strong>
+                    <span>
+                        این کارت هم موضوع مشابهی دارد.
+                    </span>
+                </div>
+
+                <div class="search-result">
+                    <strong>
+                        نتیجه سوم
+                        <span class="score">۰٫۴۹</span>
+                    </strong>
+                    <span>
+                        ارتباط معنایی ضعیف‌تر است.
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ai-story-text">
+
+            <h3>اول معنی را می‌فهمد، نه فقط کلمه را.</h3>
+
+            <p>
+                فرض کن دنبال یک کارت درباره «حافظه و یادگیری» هستی،
+                ولی دقیقاً همان کلمات داخل کارت نوشته نشده‌اند.
+                موتور هوشمند می‌تواند متن‌ها را به شکل عددی نمایش دهد
+                و میزان شباهت معنایی آن‌ها را با هم مقایسه کند.
+            </p>
+
+            <ul>
+                <li>پیدا کردن متن‌های نزدیک از نظر معنی</li>
+                <li>جست‌وجوی معنایی داخل محتوای برنامه</li>
+                <li>مقایسه میزان ارتباط بین متن‌ها</li>
+            </ul>
+
+        </div>
+
+    </article>
+
+
+    <article class="ai-story reveal">
+
+        <div class="ai-story-visual">
+
+            <div class="ai-orbit" style="width:260px;height:260px;">
+
+                <div class="ai-core" style="width:105px;height:105px;">
+                    <div>
+                        <strong>معنی</strong>
+                        <small>نه فقط واژه</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ai-dot dot-a">موضوع نزدیک</div>
+            <div class="ai-dot dot-b">شباهت زیاد</div>
+            <div class="ai-dot dot-c">نتیجه مرتبط</div>
+
+        </div>
+
+        <div class="ai-story-text">
+
+            <h3>برای فارسی ساخته شده.</h3>
+
+            <p>
+                مدلی که در پروژه استفاده شده، یک مدل کوچک برای نمایش معنایی
+                متن فارسی است. نام آن «نقل» است و در خانواده مدل‌های
+                نمایش معنایی متن قرار می‌گیرد.
+            </p>
+
+            <p style="margin-top:20px;">
+                بنابراین قرار نیست مثل یک دستیار گفت‌وگویی برایت جواب‌های
+                طولانی تولید کند؛ کار اصلی آن این است که متن‌های مرتبط را
+                بهتر پیدا و با هم مقایسه کند.
+            </p>
+
+        </div>
+
+    </article>
+
+
+    <article class="ai-story reveal">
+
+        <div class="ai-story-visual">
+
+            <div class="search-ui">
+
+                <div class="search-box">
+                    <span>هوشمندی</span>
+                </div>
+
+                <div class="search-result">
+                    <strong>کارت نزدیک اول</strong>
+                    <span>
+                        ارتباط معنایی بالا با محتوای مورد نظر
+                    </span>
+                </div>
+
+                <div class="search-result">
+                    <strong>کارت نزدیک دوم</strong>
+                    <span>
+                        ارتباط معنایی متوسط
+                    </span>
+                </div>
+
+                <div class="search-result">
+                    <strong>کارت نزدیک سوم</strong>
+                    <span>
+                        ارتباط کمتر
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ai-story-text">
+
+            <h3>سبک است، چون مدل کوچکی است.</h3>
+
+            <p>
+                نقل حدود ۱۱٫۹ میلیون پارامتر دارد و بر پایه معماری
+                آلبرت ساخته شده است. اندازه کوچک آن برای استفاده در
+                سناریوهای سبک‌تر مناسب است و مدل می‌تواند نمایش‌های
+                متنی با اندازه‌های کوچک‌تر هم تولید کند.
+            </p>
+
+            <ul>
+                <li>حدود ۱۱٫۹ میلیون پارامتر</li>
+                <li>مناسب برای متن فارسی</li>
+                <li>نمایش معنایی متن برای مقایسه و جست‌وجو</li>
+                <li>قابل استفاده در اندازه‌های ۶۴ تا ۷۶۸ بُعد</li>
+            </ul>
+
+        </div>
+
+    </article>
+
+
+    <article class="ai-story reveal">
+
+        <div class="ai-story-visual">
+
+            <div class="ai-core" style="position:relative;inset:auto;transform:none;width:180px;height:180px;border-radius:50%;">
+                <div>
+                    <strong style="font-size:38px;color:var(--cyan)">۰</strong>
+                    <small>نیاز به اینترنت</small>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ai-story-text">
+
+            <h3>هوشمند، بدون وابستگی به اینترنت.</h3>
+
+            <p>
+                در معماری این پروژه، مدل در خود برنامه قرار می‌گیرد و
+                پردازش مورد نیاز برای قابلیت‌های هوشمند می‌تواند روی
+                دستگاه انجام شود. به همین دلیل این بخش برای استفاده
+                آفلاین طراحی شده است.
+            </p>
+
+            <p style="margin-top:20px;">
+                اینترنت برای اجرای موتور هوشمند لازم نیست؛ فایل مدل
+                از قبل همراه برنامه قرار می‌گیرد.
+            </p>
+
+        </div>
+
+    </article>
+
+</div>
+
+
+<div class="ai-specs reveal">
+
+    <h3>مشخصات موتور هوشمند</h3>
+
+    <div class="spec-grid">
+
+        <div class="spec">
+            <strong>۱۱٫۹ میلیون</strong>
+            <span>تعداد تقریبی پارامترها</span>
+        </div>
+
+        <div class="spec">
+            <strong>۷۶۸</strong>
+            <span>بیشترین اندازه نمایش متن</span>
+        </div>
+
+        <div class="spec">
+            <strong>۶۴</strong>
+            <span>کمترین اندازه قابل استفاده</span>
+        </div>
+
+        <div class="spec">
+            <strong>۵۱۲</strong>
+            <span>حداکثر طول متن بر اساس مدل</span>
+        </div>
+
+    </div>
+
+    <p class="ai-disclaimer">
+        این موتور یک مدل نمایش معنایی متن است؛ بنابراین نباید آن را
+        با یک مدل تولید متن یا چت‌بات اشتباه گرفت. قابلیت‌های نهایی
+        داخل برنامه به نحوه استفاده نرم‌افزار از این موتور بستگی دارد.
+    </p>
+
+</div>
+</section> <section class="section settings-section" id="settings">
+<div class="section-label">شخصی‌سازی</div>
+
+<h2 class="section-title">
+    ظاهر برنامه را
+    <span>طبق سلیقه خودت تنظیم کن.</span>
+</h2>
+
+<p class="section-text">
+    محیط برنامه فقط یک شکل ثابت ندارد.
+    گزینه‌های شخصی‌سازی برای رنگ‌بندی، اندازه نوشته و رفتار بعضی
+    قسمت‌ها در نظر گرفته شده تا تجربه استفاده راحت‌تر شود.
+</p>
+
+<div class="settings-demo reveal-scale">
+
+    <div class="setting">
+
+        <div class="setting-right">
+            <div class="setting-icon">◉</div>
+            <div>
+                <strong>رنگ برنامه</strong>
+                <small>انتخاب رنگ دلخواه محیط</small>
+            </div>
+        </div>
+
+        <div class="toggle active" data-toggle>
+            <span></span>
+        </div>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-right">
+            <div class="setting-icon">Aa</div>
+            <div>
+                <strong>اندازه نوشته</strong>
+                <small>خوانایی بیشتر برای مطالعه</small>
+            </div>
+        </div>
+
+        <div class="toggle active" data-toggle>
+            <span></span>
+        </div>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-right">
+            <div class="setting-icon">◌</div>
+            <div>
+                <strong>انیمیشن‌ها</strong>
+                <small>حرکت‌های نرم محیط برنامه</small>
+            </div>
+        </div>
+
+        <div class="toggle active" data-toggle>
+            <span></span>
+        </div>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-right">
+            <div class="setting-icon">↪</div>
+            <div>
+                <strong>رفتن خودکار به سؤال بعدی</strong>
+                <small>ادامه سریع آزمون</small>
+            </div>
+        </div>
+
+        <div class="toggle active" data-toggle>
+            <span></span>
+        </div>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-right">
+            <div class="setting-icon">⇄</div>
+            <div>
+                <strong>ترتیب هوشمند کارت‌ها</strong>
+                <small>تغییر ترتیب مرور بر اساس تنظیمات برنامه</small>
+            </div>
+        </div>
+
+        <div class="toggle active" data-toggle>
+            <span></span>
+        </div>
+
+    </div>
+
+</div>
+</section> <section class="section download-section">
+<div class="download-box reveal-scale">
+
+    <h2>وقتشه شروع کنی.</h2>
+
+    <p>
+        گلیا کنکور برای مرورهای روزانه، آزمون، املا، آمار،
+        انتخاب درس و قابلیت‌های هوشمند طراحی شده است.
+        مسیرت را انتخاب کن و قدم بعدی را بردار.
+    </p>
+
+    <a href="https://github.com/Parin-M/Litner_Glia_konkor"
+       target="_blank"
+       class="primary-btn">
+        دریافت گلیا کنکور
+        <span>←</span>
+    </a>
+
+</div>
+</section> </main> <footer class="footer">
+<div>
+    <strong>گلیا کنکور</strong>
+    <span> — باهوش یاد بگیر، با اعتماد پیش برو</span>
+</div>
+
+<div>
+    ساخته شده برای یادگیری بهتر
+</div>
+</footer> <script> const progressBar = document.getElementById('progressBar'); const nav = document.getElementById('nav'); function updateScroll(){ const scrollTop = window.scrollY; const height = document.documentElement.scrollHeight - window.innerHeight; const percent = height > 0 ? (scrollTop / height) * 100 : 0; progressBar.style.width = percent + '%'; if(scrollTop > 80){ nav.classList.add('scrolled'); }else{ nav.classList.remove('scrolled'); } } window.addEventListener('scroll',updateScroll,{passive:true}); updateScroll(); const observer = new IntersectionObserver( entries => { entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('visible'); } }); }, { threshold:.12, rootMargin:'0px 0px -60px 0px' } ); document.querySelectorAll('.reveal,.reveal-left,.reveal-scale').forEach( element => observer.observe(element) ); const storyItems = document.querySelectorAll('.story-item'); const storyData = [ { title:'مرور', sub:'هوشمند و سریع', a:'کارت‌های امروز', b:'پیشرفت', c:'یادگیری' }, { title:'درس', sub:'انتخاب آزاد', a:'انگلیسی', b:'فارسی', c:'همه درس‌ها' }, { title:'آزمون', sub:'نتیجه فوری', a:'پاسخ درست', b:'پاسخ نادرست', c:'سؤال بعدی' }, { title:'آمار', sub:'روند یادگیری', a:'پیشرفت', b:'عملکرد', c:'مرور' } ]; const visualTitle = document.getElementById('visualTitle'); const visualSub = document.getElementById('visualSub'); const dotA = document.getElementById('dotA'); const dotB = document.getElementById('dotB'); const dotC = document.getElementById('dotC'); storyItems.forEach(item => { item.addEventListener('click', () => { storyItems.forEach( other => other.classList.remove('active') ); item.classList.add('active'); const index = Number(item.dataset.story); const data = storyData[index]; visualTitle.textContent = data.title; visualSub.textContent = data.sub; dotA.textContent = data.a; dotB.textContent = data.b; dotC.textContent = data.c; }); }); const answers = document.querySelectorAll('.answer'); const feedback = document.getElementById('examFeedback'); answers.forEach(answer => { answer.addEventListener('click', () => { answers.forEach( item => item.classList.remove('selected','correct','wrong') ); const correct = answer.dataset.correct === 'true'; answer.classList.add('selected'); if(correct){ answer.classList.add('correct'); feedback.textContent = 'آفرین! پاسخ انتخاب‌شده درست است.'; }else{ answer.classList.add('wrong'); feedback.textContent = 'این پاسخ درست نیست. گزینه صحیح را بررسی کن.'; } feedback.classList.add('show'); }); }); document.querySelectorAll('[data-toggle]').forEach(toggle => { toggle.addEventListener('click',() => { toggle.classList.toggle('active'); }); }); const phone = document.querySelector('.phone'); if(phone){ document.addEventListener('mousemove',event => { const x = (event.clientX / window.innerWidth - .5); const y = (event.clientY / window.innerHeight - .5); if(window.innerWidth > 900){ phone.style.transform = `rotateY(${-13 + x * 7}deg) rotateX(${4 - y * 5}deg) rotateZ(${2 + x * 1.5}deg)`; } }); } const lessonRows = document.querySelectorAll('.lesson-row'); lessonRows.forEach(row => { row.addEventListener('click',() => { lessonRows.forEach( item => item.style.borderColor = 'transparent' ); row.style.borderColor = 'rgba(112,216,212,.28)'; const count = row.querySelector('.lesson-count'); if(count){ count.textContent = 'انتخاب شد'; count.style.color = '#70d8d4'; } }); }); const cards = document.querySelectorAll('.feature-card'); cards.forEach(card => { card.addEventListener('mousemove',event => { const rect = card.getBoundingClientRect(); const x = event.clientX - rect.left; const y = event.clientY - rect.top; const rotateX = (y / rect.height - .5) * -5; const rotateY = (x / rect.width - .5) * 5; card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`; }); card.addEventListener('mouseleave',() => { card.style.transform = ''; }); }); const navLinks = document.querySelectorAll('.nav-links a'); navLinks.forEach(link => { link.addEventListener('click',event => { const target = document.querySelector( link.getAttribute('href') ); if(target){ event.preventDefault(); target.scrollIntoView({ behavior:'smooth', block:'start' }); } }); }); const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)'); if(reducedMotion.matches){ document.querySelectorAll('*').forEach(element => { element.style.animationDuration = '0.01ms'; element.style.animationIterationCount = '1'; element.style.scrollBehavior = 'auto'; }); } window.addEventListener('scroll',() => { const hero = document.querySelector('.hero'); if(!hero){ return; } const y = window.scrollY; if(y < window.innerHeight){ const content = document.querySelector('.hero-content'); if(content){ const amount = Math.min(y * .08,35); content.style.transform = `translateY(${amount}px)`; content.style.opacity = Math.max(.35,1 - y / (window.innerHeight * .9)); } } },{passive:true}); const aiStories = document.querySelectorAll('.ai-story'); const aiObserver = new IntersectionObserver( entries => { entries.forEach(entry => { if(entry.isIntersecting){ entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } }); }, { threshold:.15 } ); aiStories.forEach(story => { story.style.opacity = '0'; story.style.transform = 'translateY(70px)'; story.style.transition = 'opacity 1s ease,transform 1s cubic-bezier(.16,1,.3,1)'; aiObserver.observe(story); }); document.querySelectorAll('.primary-btn').forEach(button => { button.addEventListener('mouseenter',() => { button.style.transform = 'translateY(-4px) scale(1.02)'; }); button.addEventListener('mouseleave',() => { button.style.transform = ''; }); }); document.querySelectorAll('.secondary-btn').forEach(button => { button.addEventListener('mouseenter',() => { button.style.transform = 'translateY(-4px) scale(1.02)'; }); button.addEventListener('mouseleave',() => { button.style.transform = ''; }); }); let lastScroll = 0; window.addEventListener('scroll',() => { const current = window.scrollY; if(current > lastScroll && current > 200){ nav.style.opacity = '.82'; }else{ nav.style.opacity = '1'; } lastScroll = current; },{passive:true}); const observerOptions = { threshold:[0,.15,.3,.5,.75,1] }; const sectionObserver = new IntersectionObserver( entries => { entries.forEach(entry => { const ratio = entry.intersectionRatio; if(ratio > .3){ entry.target.style.setProperty( '--visibility', ratio ); } }); }, observerOptions ); document.querySelectorAll('section').forEach( section => sectionObserver.observe(section) ); document.querySelectorAll('.ai-story-visual').forEach(visual => { visual.addEventListener('mousemove',event => { const rect = visual.getBoundingClientRect(); const x = event.clientX - rect.left; const y = event.clientY - rect.top; const rx = (y / rect.height - .5) * -3; const ry = (x / rect.width - .5) * 3; visual.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`; }); visual.addEventListener('mouseleave',() => { visual.style.transform = ''; }); }); const smoothAnchors = document.querySelectorAll( 'a[href^="#"]' ); smoothAnchors.forEach(anchor => { anchor.addEventListener('click',event => { const id = anchor.getAttribute('href'); if(id === '#'){ return; } const element = document.querySelector(id); if(element){ event.preventDefault(); window.scrollTo({ top:element.offsetTop - 90, behavior:'smooth' }); } }); }); document.addEventListener('keydown',event => { if(event.key === 'Escape'){ document.querySelectorAll('.answer').forEach( item => item.classList.remove('selected') ); } }); const downloadButtons = document.querySelectorAll( 'a[href="https://github.com/Parin-M/Litner_Glia_konkor"]' ); downloadButtons.forEach(button => { button.addEventListener('click',() => { button.style.transform = 'scale(.97)'; setTimeout(() => { button.style.transform = ''; },150); }); }); window.addEventListener('load',() => { document.body.classList.add('loaded'); setTimeout(() => { document.querySelectorAll('.hero .reveal-left,.hero .reveal-scale') .forEach(element => element.classList.add('visible')); },150); }); let ticking = false; window.addEventListener('scroll',() => { if(!ticking){ window.requestAnimationFrame(() => { updateScroll(); ticking = false; }); ticking = true; } },{passive:true}); const cursorGlow = document.createElement('div'); cursorGlow.style.position = 'fixed'; cursorGlow.style.width = '220px'; cursorGlow.style.height = '220px'; cursorGlow.style.borderRadius = '50%'; cursorGlow.style.pointerEvents = 'none'; cursorGlow.style.zIndex = '0'; cursorGlow.style.background = 'radial-gradient(circle,rgba(112,216,212,.045),transparent 70%)'; cursorGlow.style.transform = 'translate(-50%,-50%)'; cursorGlow.style.transition = 'left .15s ease,top .15s ease'; document.body.appendChild(cursorGlow); document.addEventListener('mousemove',event => { cursorGlow.style.left = event.clientX + 'px'; cursorGlow.style.top = event.clientY + 'px'; }); const paragraphs = document.querySelectorAll( '.section-text,.hero-description,.ai-story-text p' ); paragraphs.forEach(paragraph => { paragraph.addEventListener('mouseenter',() => { paragraph.style.color = '#aab3c3'; }); paragraph.addEventListener('mouseleave',() => { paragraph.style.color = ''; }); }); const titleWords = document.querySelectorAll('.section-title,.ai-title'); titleWords.forEach(title => { title.addEventListener('mouseenter',() => { title.style.transition = '.5s ease'; title.style.transform = 'translateX(-4px)'; }); title.addEventListener('mouseleave',() => { title.style.transform = ''; }); }); const phoneStage = document.querySelector('.phone-stage'); if(phoneStage){ phoneStage.addEventListener('mouseenter',() => { phone.style.animationPlayState = 'paused'; }); phoneStage.addEventListener('mouseleave',() => { phone.style.animationPlayState = 'running'; }); } const floatingCards = document.querySelectorAll('.floating-card'); floatingCards.forEach((card,index) => { card.style.animationDelay = `${index * .4}s`; }); const lessonObserver = new IntersectionObserver( entries => { entries.forEach(entry => { if(entry.isIntersecting){ lessonRows.forEach((row,index) => { row.style.transitionDelay = `${index * 80}ms`; row.style.opacity = '1'; row.style.transform = 'translateX(0)'; }); } }); }, { threshold:.2 } ); lessonRows.forEach(row => { row.style.opacity = '0'; row.style.transform = 'translateX(35px)'; row.style.transition = 'opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)'; }); const lessonDemo = document.querySelector('.lesson-demo'); if(lessonDemo){ lessonObserver.observe(lessonDemo); } const metricNumbers = document.querySelectorAll('.metric strong'); const metricObserver = new IntersectionObserver( entries => { entries.forEach(entry => { if(entry.isIntersecting){ entry.target.animate( [ { opacity:.2, transform:'translateY(15px)' }, { opacity:1, transform:'translateY(0)' } ], { duration:700, easing:'cubic-bezier(.16,1,.3,1)', fill:'forwards' } ); metricObserver.unobserve(entry.target); } }); }, { threshold:.5 } ); metricNumbers.forEach(number => metricObserver.observe(number) ); const aiOrbitElements = document.querySelectorAll('.ai-orbit'); aiOrbitElements.forEach((orbit,index) => { orbit.style.animationDuration = `${20 + index * 5}s`; }); window.addEventListener('resize',() => { if(window.innerWidth <= 900){ if(phone){ phone.style.transform = 'rotateY(-5deg) rotateX(2deg)'; } } }); const storyVisual = document.getElementById('storyVisual'); if(storyVisual){ window.addEventListener('scroll',() => { const rect = storyVisual.getBoundingClientRect(); const center = window.innerHeight / 2; const difference = center - (rect.top + rect.height / 2); if(Math.abs(difference) < window.innerHeight){ const movement = difference * .025; storyVisual.style.transform = `translateY(${movement}px)`; } },{passive:true}); } const aiVisuals = document.querySelectorAll('.ai-story-visual'); aiVisuals.forEach((visual,index) => { window.addEventListener('scroll',() => { const rect = visual.getBoundingClientRect(); const viewport = window.innerHeight; const center = rect.top + rect.height / 2; const distance = center - viewport / 2; if(Math.abs(distance) < viewport){ const movement = Math.max(-18,Math.min(18,-distance * .025)); visual.style.setProperty( '--scroll-move', movement + 'px' ); } },{passive:true}); }); const allButtons = document.querySelectorAll('button,a'); allButtons.forEach(button => { button.addEventListener('mousedown',() => { button.style.transition = '.1s ease'; button.style.transform = 'scale(.97)'; }); button.addEventListener('mouseup',() => { button.style.transform = ''; }); button.addEventListener('mouseleave',() => { button.style.transform = ''; }); }); const sections = document.querySelectorAll('main section'); const sectionNameMap = { home:'خانه', features:'ویژگی‌ها', lessons:'لایتنر', exam:'آزمون', ai:'هوش مصنوعی', settings:'تنظیمات' }; const activeNavObserver = new IntersectionObserver( entries => { entries.forEach(entry => { if(entry.isIntersecting){ const id = entry.target.id; navLinks.forEach(link => { const active = link.getAttribute('href') === '#' + id; link.style.color = active ? 'white' : ''; link.style.background = active ? 'rgba(255,255,255,.06)' : ''; }); } }); }, { threshold:.45 } ); sections.forEach(section => activeNavObserver.observe(section) ); document.querySelectorAll('.setting').forEach(setting => { setting.addEventListener('click',event => { if(event.target.closest('.toggle')){ return; } const toggle = setting.querySelector('.toggle'); if(toggle){ toggle.classList.toggle('active'); } }); }); const fakeSearch = document.querySelector('.search-box'); if(fakeSearch){ const searchTexts = [ 'پیدا کردن مطلب مرتبط با حافظه', 'پیدا کردن کارت‌های مشابه', 'جست‌وجوی معنایی در درس‌ها', 'پیدا کردن مطالب نزدیک' ]; let searchIndex = 0; setInterval(() => { searchIndex = (searchIndex + 1) % searchTexts.length; fakeSearch.lastElementChild.textContent = searchTexts[searchIndex]; },2400); } const phoneProgress = document.querySelector('.phone-progress span'); if(phoneProgress){ let progress = 38; setInterval(() => { progress += .2; if(progress > 64){ progress = 38; } phoneProgress.style.width = progress + '%'; },80); } const pageTitle = document.title; document.addEventListener('visibilitychange',() => { if(document.hidden){ document.title = 'برگرد به گلیا کنکور'; }else{ document.title = pageTitle; } }); console.log( 'گلیا کنکور | صفحه معرفی برنامه' ); </script> </body> </html>
